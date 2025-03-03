@@ -1,0 +1,31 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "lingine"
+version = "0.0.1"
+description = "Raw implementation of LLM technologies"
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: Apache Software License",
+]
+dependencies = [
+    "transformers==4.48.0", "torch==2.6.0",  "sentencepiece", 'loguru'
+]
+
+[project.optional-dependencies]
+train = ["deepspeed==0.16.3", "ninja", "wandb", "pillow"]
+dev = ["jupyter"]
+rl = ["gymnasium"]
+build = ["build", "twine"]
+
+[project.urls]
+
+[tool.setuptools.packages.find]
+exclude = []
+
+[tool.wheel]
+exclude = []
