@@ -1,11 +1,11 @@
 {
   "_attn_implementation_autoset": true,
-  "_name_or_path": "configs/llava/llama-3_2-1b-instruct.json",
+  "_name_or_path": "configs/llava/llama-3_2-1b-instruct-336.json",
   "architectures": [
     "LlavaForConditionalGeneration"
   ],
   "ignore_index": -100,
-  "image_seq_length": 49,
+  "image_seq_length": 576,
   "image_token_index": 128256,
   "model_type": "llava",
   "multimodal_projector_bias": true,
@@ -47,18 +47,18 @@
   "transformers_version": "4.48.0",
   "vision_config": {
     "_attn_implementation_autoset": true,
-    "_name_or_path": "openai/clip-vit-base-patch32",
-    "hidden_size": 768,
-    "image_size": 224,
-    "intermediate_size": 3072,
+    "_name_or_path": "openai/clip-vit-large-patch14-336",
+    "hidden_size": 1024,
+    "image_size": 336,
+    "intermediate_size": 4096,
     "model_type": "clip_vision_model",
-    "num_attention_heads": 12,
-    "num_hidden_layers": 12,
-    "patch_size": 32,
-    "projection_dim": 512
+    "num_attention_heads": 16,
+    "num_hidden_layers": 24,
+    "patch_size": 14,
+    "projection_dim": 768
   },
   "vision_feature_layer": -2,
   "vision_feature_select_strategy": "default",
-  "vision_tower": "openai/clip-vit-base-patch32",
+  "vision_tower": "openai/clip-vit-large-patch14-336",
   "vocab_size": 128257
 }

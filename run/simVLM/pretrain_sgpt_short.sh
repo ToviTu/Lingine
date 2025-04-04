@@ -15,11 +15,12 @@ accelerate launch \
     --gradient_accumulation_steps 1 \
     --weight_decay 0 \
     --warmup_ratio 0.03 \
+    --max_steps 500 \
     --num_train_epochs 1 \
     --lr_scheduler_type cosine \
     --learning_rate 1e-3 \
     --logging_step 1 \
-    --save_strategy steps \
+    --save_strategy no \
     --save_steps 10000 \
     --save_total_limit 1 \
     --output_dir "$MY_HOME/models/llava-llama-3_2-1b-spt" \
