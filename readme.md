@@ -1,4 +1,0 @@
-# Lingine
-
-## Installation
-

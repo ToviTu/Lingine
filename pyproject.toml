@@ -13,7 +13,7 @@ classifiers = [
     "License :: OSI Approved :: Apache Software License",
 ]
 dependencies = [
-    "transformers==4.48.0", "torch==2.6.0",  "sentencepiece", 'loguru'
+    "transformers==4.49.0", "torch==2.6.0",  "sentencepiece", 'loguru'
 ]
 
 [project.optional-dependencies]
