@@ -22,9 +22,6 @@ class VLGRPOConfig(GRPOConfig):
     freeze_vision_model: bool = False
     freeze_mm_projector: bool = False
     freeze_language_model: bool = False
-    verbose: bool = False
-    supervised: bool = False
-    supervised_frequency: int = 3
 
 
 @dataclass
@@ -32,12 +29,12 @@ class ThisScriptArguments(LLaVAPretrainArguments):
     reward_model: str = ""
 
 
-PROMPTE_TEMPLATE = (
+PROMPT_TEMPLATE = (
     "{% for message in messages %}"
     "user\n"
     "{{ message.content }}\n"
     "{% endfor %}"
-    "assistant\n"
+    "assistant\n\n"
 )
 
 if __name__ == "__main__":
@@ -81,9 +78,10 @@ if __name__ == "__main__":
     else:
         raise ValueError("Either a model name or a config file must be provided")
 
+    processor.bos_token_id = processor.tokenizer.bos_token_id
     processor.pad_token_id = processor.tokenizer.pad_token_id
     processor.eos_token_id = processor.tokenizer.eos_token_id
-    processor.chat_template = PROMPTE_TEMPLATE
+    processor.chat_template = PROMPT_TEMPLATE
 
     if training_args.freeze_vision_model:
         for param in model.vision_tower.parameters():
@@ -179,8 +177,8 @@ if __name__ == "__main__":
     trainer = VLGRPOTrainer(
         model=model,
         processing_class=processor,
-        reward_funcs=[reward_model, length_reward],
-        reward_processing_classes=[reward_processor, None],
+        reward_funcs=[reward_model],
+        reward_processing_classes=[reward_processor],
         args=training_args,
         train_dataset=dataset,
     )

@@ -13,6 +13,6 @@ class CLIPRewardModel(CLIPModel):
     def forward(self, *args, **kwargs):
         outputs = super().forward(*args, **kwargs)
 
-        # Compute the similarity as the reward
-        reward = outputs.text_embeds @ outputs.image_embeds.T
+        # Compute the pairwise similarity as the reward
+        reward = (outputs.text_embeds * outputs.image_embeds).sum(dim=-1)
         return reward

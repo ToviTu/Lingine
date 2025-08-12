@@ -75,9 +75,18 @@ if __name__ == "__main__":
         )
         processor.chat_template = LLAVA_FINETUNE_TEMPLATE
 
-    if training_args.freeze_vision_model:
-        for param in model.vision_tower.parameters():
+    # Freeze the vision model
+    for param in model.vision_tower.parameters():
             param.requires_grad = False
+    if training_args.freeze_vision_model:
+        pass
+    else:
+        # Unfreeze the lower half of the vision model
+        num_layers = len(model.vision_tower.vision_model.encoder.layers)
+        for i in range(num_layers // 2, num_layers):
+            for param in model.vision_tower.vision_model.encoder.layers[i].parameters():
+                param.requires_grad = True
+        model.vision_tower.vision_model.post_layernorm.requires_grad = True
     if training_args.freeze_mm_projector:
         for param in model.multi_modal_projector.parameters():
             param.requires_grad = False

@@ -7,7 +7,7 @@ accelerate launch \
     --config_file=configs/accelerate/4gpus/deepspeed_zero2.yaml \
     --main_process_port 29501 \
     scripts/mlan/llava_pretrain.py \
-    --config_file configs/llava/llama-3_2-1b-instruct-224.json \
+    --config_file configs/llava/llama-3_2-3b-instruct-336.json \
     --mean_resizing True \
     --dataset_name "$MY_HOME/datasets/ShareGPT4V/llava/llava_pretrain/blip_laion_cc_sbu_558k.json" \
     --use_prompt_template False \
@@ -27,11 +27,11 @@ accelerate launch \
     --save_strategy steps \
     --save_steps 10000 \
     --save_total_limit 1 \
-    --output_dir "$MY_HOME/models/llava-llama-3_2-1b-instruct" \
+    --output_dir "$MY_HOME/models/llava-llama-3_2-3b-instruct" \
     --bf16 True \
     --tf32 True \
     --gradient_checkpointing \
     --dataloader_num_workers 8 \
-    --run_name llava-llama-3_2-1b-instruct \
+    --run_name llava-llama-3_2-3b-instruct \
     --do_train \
     --report_to wandb
